@@ -10,7 +10,7 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit, OnDestroy{
+export class RecipeDetailComponent implements OnInit, OnDestroy {
   recipe: Recipe;
   subscription: Subscription;
   id: string;

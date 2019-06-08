@@ -50,6 +50,11 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
 import { DatastorageService } from './shared/datastorage.service';
 import { HeaderComponent } from './header/header.component';
+import { PhieusuachuaComponent } from './phieusuachua/phieusuachua.component';
+import { PhieusuachuaDetailComponent } from './phieusuachua/phieusuachua-detail/phieusuachua-detail.component';
+import { PhieusuachuaListComponent } from './phieusuachua/phieusuachua-list/phieusuachua-list.component';
+import { PhieusuachuaNewComponent } from './phieusuachua/phieusuachua-new/phieusuachua-new.component';
+import { PhieutiepnhanDetailComponent } from './phieutiepnhan/phieutiepnhan-detail/phieutiepnhan-detail.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +74,14 @@ import { HeaderComponent } from './header/header.component';
     TtlistsearchPipe,
     LoginFormComponent,
     UserProfileComponent,
+
+
+    // trash
+    PhieusuachuaComponent,
+    PhieusuachuaDetailComponent,
+    PhieusuachuaListComponent,
+    PhieusuachuaNewComponent,
+    PhieutiepnhanDetailComponent,
   ],
   imports: [
     BrowserModule,
