@@ -1,0 +1,16 @@
+.footer .container-fluid {
+    background-color: #4285F4;
+    color: white;
+}
+.footer .footer-copyright {
+    background-color: #0d47a1;
+    color: azure;
+}
+a {
+    color: lightblue;
+    text-decoration: none;
+}
+a:hover {
+    color: gold;
+    text-decoration: none;
+}

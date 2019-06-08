@@ -1,0 +1,14 @@
+.warning {
+  background-color: #ffffcc;
+  border-left: 6px solid #ffeb3b;
+}
+
+.danger {
+  background-color: #ffdddd;
+  border-left: 6px solid #f44336;
+  margin-bottom: 15px;
+  padding: 4px 12px;
+}
+.rounded {
+  background-color: aliceblue;
+}

@@ -1,0 +1,95 @@
+<!-- <button class="btn btn-outline-secondary" (click)="goBack()">
+  <i class="fas fa-caret-square-left"></i> Back</button> -->
+<div class="rounded block bg-primary">
+  <h2 class="p-2 text-white-50 shadow-sm text-center">Phiếu Tiếp Nhận Xe</h2>
+</div>
+<div class="rounded" style="padding: 10px">
+  <form #form="ngForm" (submit)="onSave(form)" autocomplete="off">
+    <!-- <h2>Thông tin xe</h2> -->
+    <div class="form-group">
+      <label for="bienso">Biển số:</label>
+      <input class="form-control" id="bienso" #bienso="ngModel" [(ngModel)]="phieutiepnhan.bienso" name="bienso"
+        placeholder="biển số" [minlength]="5" [maxlength]="5" pattern="[a-zA-Z0-9]*"
+        oninput="this.value = this.value.toUpperCase()" required>
+      <div *ngIf="isshow1 && !xe" class="text-success"><small>Không bị trùng lặp</small></div>
+      <div *ngIf="isshow2" class="mt-1 text-black-50" style="display: flex; justify-content: flex-start">
+        <mat-spinner class="mt-1" strokeWidth="3" diameter="15"></mat-spinner>
+        <small>Đang kiểm tra...</small>
+      </div>
+      <div class="text-info" *ngIf="isshow1 && xe"><small>Tìm thấy thông tin! Biển số: {{xe.bienso}}
+          hiệu xe: {{xe.hieuxe}}</small></div>
+      <small class="validation-error" *ngIf="bienso.invalid && bienso.touched">Không hợp lệ, phải có 5 ký tự</small>
+      <!-- <mat-form-field>
+            <input type="text" matInput class="form-control" #biensoxe="ngModel" 
+            [(ngModel)]="phieutiepnhan.bienso" name="bienso" placeholder="Biển số xe" required>
+        </mat-form-field> -->
+    </div>
+    <div class="form-group row">
+      <div class="form-group col-sm-7">
+        <label for="ngaynhan">Ngày tiếp nhận:</label>
+        <!--         <input readonly="true" id="ngaynhan" class="form-control" name="ngaytiepnhan" placeholder="ngày nhận"
+          [ngModel]="phieutiepnhan.ngaytiepnhan"> -->
+        <!-- <mat-form-field>
+              <input type="text" matInput class="form-control" #ngaynhan="ngModel"
+              [ngModel]="phieutiepnhan.ngaytiepnhan" name="ngaytiepnhan" placeholder="Ngày tiếp nhận" required>
+          </mat-form-field> -->
+        <div class="input-group">
+          <input type="date" class="form-control" id="ngaynhan" name="ngaytiepnhan" [(ngModel)]="model" ngbDatepicker
+            #d="ngbDatepicker" required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"
+                aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-5">
+        <label for="hieuxe">Hiệu xe:</label>
+        <select type="input" class="form-control" [disabled]="xe" id="hieuxe" name="hieuxe" [(ngModel)]="phieutiepnhan.hieuxe" required>
+          <option [ngValue]="null">Hiệu xe</option>
+          <option [ngValue]="hieuxe.hieuxe" *ngFor="let hieuxe of hieuxeList"> {{hieuxe.hieuxe}} </option>
+        </select>
+        <!-- <mat-form-field>
+            <input type="text" matInput class="form-control" (keyup)="search()" name="hieuxe" [(ngModel)]="phieutiepnhan.hieuxe" required [matAutocomplete]="auto" placeholder="Hiệu xe" >
+          </mat-form-field>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let hieuxe of filteredOptions" [value]="hieuxe.hieuxe">
+              {{ hieuxe.hieuxe }}
+            </mat-option>
+          </mat-autocomplete> -->
+      </div>
+    </div>
+    <!-- <h2>Thông tin khách hàng</h2> -->
+    <div class="form-group">
+      <label for="tenchuxe">Tên khách hàng:</label>
+      <input name="tenkhachhang" id="tenchuxe" #tenkhach="ngModel" [(ngModel)]="phieutiepnhan.tenkhachhang"
+        placeholder="Tên chủ xe" class="form-control" [maxLength]="25"
+        pattern="[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]*"
+        required>
+      <small class="validation-error" *ngIf="tenkhach.invalid && tenkhach.touched">Họ tên phải có đủ họ, tên đệm, tên,
+        độ dài 10-25 ký tự</small>
+    </div>
+
+    <div class="form-group">
+      <label for="dienthoai">Số điện thoại:</label>
+      <input class="form-control" id="dienthoai" #dienthoai="ngModel" [(ngModel)]="phieutiepnhan.dienthoai"
+        name="dienthoai" placeholder="điện thoại" [minlength]="10" [maxlength]="10" pattern="[0-9]*" required>
+      <small class="validation-error" *ngIf="dienthoai.invalid && dienthoai.touched">Không hợp lệ, số điện thoại phải đủ
+        10 số và không chữ</small>
+    </div>
+    <div class="form-group">
+      <label for="diachi">Địa chỉ:</label>
+      <input class="form-control" id="diachi" #diachi="ngModel" [(ngModel)]="phieutiepnhan.diachi" name="diachi"
+        placeholder="địa chỉ" [maxLength]="50"
+        pattern="[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]*">
+      <small class="validation-error" *ngIf="diachi.invalid && diachi.touched">Không hợp lệ</small>
+    </div>
+    <div class="form-group">
+      <button class="form-control btn btn-block btn-info" [disabled]="form.invalid || !isshow" type="submit"
+        style="display: flex; justify-content: center">
+        <h5 *ngIf="isshow">Xác nhận</h5>
+        <mat-spinner strokeWidth="5" diameter="25" *ngIf="!isshow"></mat-spinner>
+        <h5 *ngIf="!isshow">Vui lòng chờ...</h5>
+      </button>
+    </div>
+  </form>
+</div>

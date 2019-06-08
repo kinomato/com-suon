@@ -1,0 +1,70 @@
+<button routerLink="/suachua/new" class="btn btn-success">Thêm phiếu sửa</button>
+<!-- <h1 class="text-center">Danh sách phiếu sửa chữa</h1> -->
+<div class="rounded block bg-primary mt-2">
+  <h2 class="p-2 text-white-50 shadow-sm text-center">Danh sách sửa chữa</h2>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group input-group-lg">
+      <div class="input-group-append"></div>
+      <span class="input-group-text">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </span>
+      <input type="text" name="search" [(ngModel)]="searchvalue" class="form-control" placeholder="Search any field">
+    </div>
+  </div>
+</div>
+<div class="shadow rounded">
+  <table class="table table-hover">
+    <thead>
+      <th (click)="sort('bienso')">Biển số
+        <i class="fas" *ngIf="key =='bienso'" [ngClass]="{'fa-sort-up': reverse,'fa-sort-down': !reverse}"></i>
+      </th>
+      <th (click)="sort('ngaysuachua')">Ngày sửa chữa
+        <i class="fas" *ngIf="key =='ngaysuachua'" [ngClass]="{'fa-sort-up': reverse,'fa-sort-down': !reverse}"></i>
+      </th>
+      <th (click)="sort('tongtien')">Tổng tiền
+        <i class="fas" *ngIf="key =='tongtien'" [ngClass]="{'fa-sort-up': reverse,'fa-sort-down': !reverse}"></i>
+      </th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <div *ngIf="suachuaList$ | async, then listitem else matprogressbar">
+        </div>
+        <ng-template #matprogressbar>
+          <td class="differ" colspan="5">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
+        </ng-template>
+        <ng-template #listitem>
+        </ng-template>
+      </tr>
+
+      <tr
+        *ngFor="let suachua of suachuaList$ | async | sclistsearch:searchvalue | orderBy:key:reverse | paginate:{ itemsPerPage: 5, currentPage: p }, let i = index">
+        <td>{{suachua.bienso}}</td>
+        <td>{{suachua.ngaysuachua | customdatetime}}</td>
+        <td>{{suachua.tongtien | currency:'VND'}}</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning" [routerLink]="[ '/suachua/detail/', suachua.idphieusuachua ]">
+              <i class="fa fa-cog" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-danger" (click)="onDelete(suachua.idphieusuachua)">
+              <i class="fa fa-trash" aria-hidden="true"></i></button>
+          </div>
+          <!-- <div class="btn-group">
+              <a type="button" class="btn btn-warning"
+              [routerLink]="[ '/suachua/detail/', suachua.idphieusuachua ]">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+            </a>
+            <a type="button" class="btn btn-danger" (click)="onDelete(suachua.idphieusuachua)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+          </div>  -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

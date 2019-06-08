@@ -1,0 +1,9 @@
+input.ng-dirty.ng-invalid {
+    border-color: red
+  }
+div.validation-error {
+    color:brown;
+}
+.rounded {
+  background-color: aliceblue;
+}

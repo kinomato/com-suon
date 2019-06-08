@@ -1,0 +1,173 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand d-none d-sm-block" routerLink="/trangchu">
+    <h4>Ghiền quán</h4>
+  </a>
+  <div class="d-flex flex-row order-2 order-lg-3">
+    <ul class="navbar-nav flex-row">
+      <div class="col d-block d-lg-none">
+        <li class="nav-item ">
+          <a class="nav-link " routerLink="/trangchu" [routerLinkActive]="['active']">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </a>
+        </li>
+      </div>
+      <div class="col d-block d-lg-none">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/phieutiepnhan/new"
+            [routerLinkActive]="['active']">
+            <i class="fas fa-car"></i>
+          </a>
+        </li>
+      </div>
+      <div class="col d-block d-lg-none">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/suachua/new" [routerLinkActive]="['active']">
+            <i class="fas fa-wrench"></i>
+          </a>
+        </li>
+      </div>
+      <div class="col d-block d-lg-none">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/thutien/new" [routerLinkActive]="['active']">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </a>
+        </li>
+      </div>
+      <div class="col d-block d-lg-none">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/nhapphutung/new" [routerLinkActive]="['active']">
+            <i class="fas fa-cart-plus"></i></a>
+        </li>
+      </div>
+      <div class="col d-block d-lg-none">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/danhsachxe" [routerLinkActive]="['active']">
+            <i class="fas fa-clipboard-list"></i></a>
+        </li>
+      </div>
+      <div class="col d-block d-lg-none">
+          <button #navbar class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="d-none d-sm-block">
+            <button #navbar class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </ul>
+    
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        
+        <li class="nav-item ">
+          <a class="nav-link d-none d-sm-block" routerLink="/trangchu" [routerLinkActive]="['active']">
+            <i class="fa fa-home px-1" aria-hidden="true"></i>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-none d-sm-block" routerLink="/phieutiepnhan/new" [routerLinkActive]="['active']">
+            <i class="fas fa-car px-1"></i>Nhận xe</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-none d-sm-block" routerLink="/suachua/new" [routerLinkActive]="['active']">
+            <i class="fas fa-wrench px-1"></i>Phiếu sửa</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link d-none d-sm-block" routerLink="/thutien/new" [routerLinkActive]="['active']">
+            <i class="fas fa-file-invoice-dollar px-1"></i>Thu tiền</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-none d-sm-block" routerLink="/nhapphutung/new" [routerLinkActive]="['active']">
+            <i class="fas fa-cart-plus px-1"></i>Nhập phụ tùng</a>
+        </li>
+        <li class="nav-item d-none d-sm-block">
+          <a class="nav-link" routerLink="/danhsachxe" [routerLinkActive]="['active']">
+            <i class="fas fa-clipboard-list px-1"></i>Danh sách xe</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Quản lý
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/khachhang">Khách hàng</a>
+            <a class="dropdown-item" routerLink="/phutung">Phụ tùng</a>
+            <a class="dropdown-item" routerLink="/hieuxe">Hiệu xe</a>
+            <a class="dropdown-item" routerLink="/tiencong">Tiền công</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/phieutiepnhan">Danh sách tiếp nhận</a>
+            <a class="dropdown-item" routerLink="/suachua">Danh sách sửa chữa</a>
+            <a class="dropdown-item" routerLink="/thutien">Danh sách thu tiền</a>
+            <a class="dropdown-item" routerLink="/nhapphutung">Danh sách nhập phụ tùng</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/recycle">Recycle bin</a>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="auth.user$ | async; then authenticated else guest"></div>
+      <ng-template #guest>
+        <button class="btn btn-outline-light" (click)="auth.googleSignin()">
+          <i class="fab fa-google" aria-hidden="true"></i>
+          Signin with Google
+        </button>
+      </ng-template>
+      <ng-template #authenticated>
+        <form class="form-inline my-2 my-lg-0" *ngIf="auth.user$ | async as user">
+          <a routerLink="/user/profile"><img class="avatar mr-2" [src]="user.photoURL"></a>
+          <button class="btn btn-outline-light my-2 my-sm-0" (click)="auth.signOut()">
+            Logout
+            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+          </button>
+        </form>
+      </ng-template>
+    </div>
+</nav>
+ -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/" class="navbar-brand">Recipe Book</a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+        <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" appDropdown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a style="cursor: pointer;">Save Data</a></li>
+            <li><a style="cursor: pointer;">Fetch Data</a></li>
+          </ul>
+        </li>
+        <li style="vertical-align: center">
+          <div *ngIf="auth.user$ | async; then authenticated else guest"></div>
+          <ng-template #guest>
+            <a class="btn btn-outline-light" (click)="auth.googleSignin()">
+              <i class="fab fa-google" aria-hidden="true"></i>
+              Signin with Google
+            </a>
+          </ng-template>
+          <ng-template #authenticated>
+            <form class="form-inline my-2 my-lg-0" *ngIf="auth.user$ | async as user">
+              <a routerLink="/user/profile"><img class="avatar mr-2" [src]="user.photoURL"></a>
+              <a class="btn btn-outline-light my-2 my-sm-0" (click)="auth.signOut()">
+                Logout
+                <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+              </a>
+            </form>
+          </ng-template>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
