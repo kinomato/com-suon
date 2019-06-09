@@ -15,6 +15,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   recipes$: Observable<Recipe[]>;
   subscription: Subscription;
+  searchvalue;
+  p = 1 ;
 
   constructor(private recipeService: RecipeService,
               private router: Router,

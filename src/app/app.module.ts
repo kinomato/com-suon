@@ -55,6 +55,7 @@ import { PhieusuachuaDetailComponent } from './phieusuachua/phieusuachua-detail/
 import { PhieusuachuaListComponent } from './phieusuachua/phieusuachua-list/phieusuachua-list.component';
 import { PhieusuachuaNewComponent } from './phieusuachua/phieusuachua-new/phieusuachua-new.component';
 import { PhieutiepnhanDetailComponent } from './phieutiepnhan/phieutiepnhan-detail/phieutiepnhan-detail.component';
+import { RecipesearchPipe } from './custompipe/recipesearch.pipe';
 
 @NgModule({
   declarations: [
@@ -74,14 +75,7 @@ import { PhieutiepnhanDetailComponent } from './phieutiepnhan/phieutiepnhan-deta
     TtlistsearchPipe,
     LoginFormComponent,
     UserProfileComponent,
-
-
-    // trash
-    PhieusuachuaComponent,
-    PhieusuachuaDetailComponent,
-    PhieusuachuaListComponent,
-    PhieusuachuaNewComponent,
-    PhieutiepnhanDetailComponent,
+    RecipesearchPipe,
   ],
   imports: [
     BrowserModule,

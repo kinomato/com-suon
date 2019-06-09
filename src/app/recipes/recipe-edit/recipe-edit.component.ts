@@ -6,6 +6,7 @@ import { RecipeService } from '../recipe.service';
 import { map } from 'rxjs/operators';
 import { Recipe } from '../recipe.model';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -21,7 +22,8 @@ export class RecipeEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
-    private router: Router) {
+    private router: Router,
+    private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -47,10 +49,20 @@ export class RecipeEditComponent implements OnInit {
     //   this.recipeForm.value['imagePath'],
     //   this.recipeForm.value['ingredients']);
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+      this.recipeService.updateRecipe(this.id, this.recipeForm.value)
+      .then(() => {
+        this.toastr.success('Thành công', 'Sửa món');
+      }, () => {
+        this.toastr.warning('Từ chối', 'Sửa món');
+      }).catch(err => console.log(err));
     } else {
       console.log(this.recipeForm.value);
-      this.recipeService.addRecipe(this.recipeForm.value);
+      this.recipeService.addRecipe(this.recipeForm.value)
+      .then(() => {
+        this.toastr.success('Thành công', 'Thêm món');
+      }, () => {
+        this.toastr.warning('Từ chối', 'Thêm món');
+      }).catch(err => console.log(err));
     }
     this.onCancel();
   }
