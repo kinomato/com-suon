@@ -11,7 +11,8 @@ export class RecipesearchPipe implements PipeTransform {
     }
     return value.filter((val: any) => {
       const rval = (val.name.toLocaleLowerCase().includes(args)) ||
-         (val.description.toLocaleLowerCase().includes(args));
+         (val.description.toLocaleLowerCase().includes(args)) ||
+         (val.price.toString().includes(args));
       return rval;
     });
   }
