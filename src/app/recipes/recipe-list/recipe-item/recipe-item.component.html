@@ -2,12 +2,15 @@
   style="cursor: pointer;"
   [routerLink]="[index]"
   routerLinkActive="active"
-  class="list-group-item clearfix">
-  <div class="pull-left">
+  class="list-group-item clearfix" style="display: flex; justify-content: space-between; flex: 1">
+  <div style="margin-right: auto">
     <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
     <p class="list-group-item-text">{{ recipe.description }}</p>
   </div>
-  <span class="pull-right">
+  <div>
+    <p>{{recipe.price | currency: 'VND'}}</p>
+  </div>
+  <span style="margin-left: auto">
         <img
           [src]="recipe.imagePath"
           alt="{{ recipe.name }}"

@@ -9,7 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class RecipeService {
   recipesChanged = new EventEmitter<Recipe[]>();
 
-  private recipes: Recipe[] = [
+  /* private recipes: Recipe[] = [
     new Recipe(
       'Tasty Schnitzel',
       'A super-tasty Schnitzel - just awesome!',
@@ -25,7 +25,7 @@ export class RecipeService {
         new Ingredient('Buns', 2),
         new Ingredient('Meat', 1)
       ])
-  ];
+  ]; */
 
   constructor(
     private slService: ShoppingListService,
@@ -41,8 +41,8 @@ export class RecipeService {
     return this.fireStore.collection('com').doc<Recipe>(id).valueChanges();
   }
   setRecipes(recipes: Recipe[]) {
-    this.recipes = recipes;
-    this.recipesChanged.emit(this.recipes.slice());
+   /*  this.recipes = recipes;
+    this.recipesChanged.emit(this.recipes.slice()); */
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
