@@ -30,9 +30,6 @@ import {
   MatPaginatorModule,
   MatProgressBarModule
 } from '@angular/material';
-import { DaytimeyearPipe } from './custompipe/daytimeyear.pipe';
-import { TnlistsearchPipe } from './custompipe/tnlistsearch.pipe';
-import { TtlistsearchPipe } from './custompipe/ttlistsearch.pipe';
 import { LoginFormComponent } from './users/login-form/login-form.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -50,11 +47,6 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
 import { DatastorageService } from './shared/datastorage.service';
 import { HeaderComponent } from './header/header.component';
-import { PhieusuachuaComponent } from './phieusuachua/phieusuachua.component';
-import { PhieusuachuaDetailComponent } from './phieusuachua/phieusuachua-detail/phieusuachua-detail.component';
-import { PhieusuachuaListComponent } from './phieusuachua/phieusuachua-list/phieusuachua-list.component';
-import { PhieusuachuaNewComponent } from './phieusuachua/phieusuachua-new/phieusuachua-new.component';
-import { PhieutiepnhanDetailComponent } from './phieutiepnhan/phieutiepnhan-detail/phieutiepnhan-detail.component';
 import { RecipesearchPipe } from './custompipe/recipesearch.pipe';
 
 @NgModule({
@@ -70,9 +62,6 @@ import { RecipesearchPipe } from './custompipe/recipesearch.pipe';
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
-    DaytimeyearPipe,
-    TnlistsearchPipe,
-    TtlistsearchPipe,
     LoginFormComponent,
     UserProfileComponent,
     RecipesearchPipe,
